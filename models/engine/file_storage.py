@@ -12,6 +12,7 @@ class FileStorage:
         """Returns a dictionary of models currently in storage"""
         if cls is None:
             return FileStorage.__objects
+        obj_dict = {}
         return {key: value for key, value
                 in FileStorage.__objects.items() if type(value) is cls}
 
@@ -32,7 +33,8 @@ class FileStorage:
         if obj is None:
             return
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
-        del FileStorage.__objects[key]
+        if key in FileStorage.__objects.keys():
+            del FileStorage.__objects[key]
 
     def reload(self):
         """Loads storage dictionary from file"""
