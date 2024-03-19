@@ -149,6 +149,7 @@ class HBNBCommand(cmd.Cmd):
         print("Creates a class of any type")
         print("[Usage]: create <className>\n")
 
+
     def do_show(self, args):
         """ Method to show an individual object """
         new = args.partition(" ")
