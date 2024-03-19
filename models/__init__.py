@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
-from models.engine import file_storage, db_storage
+from models.engine import file_storage
+from models.engine import db_storage
 from  os import  getenv
 
 storage = file_storage.FileStorage()
