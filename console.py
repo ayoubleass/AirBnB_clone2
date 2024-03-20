@@ -126,6 +126,8 @@ class HBNBCommand(cmd.Cmd):
         new_args = args.split()[1:]
         obj_dict = {}
         for arg  in new_args:
+            if "=" not in arg:
+                continue
             key, value = arg.split("=")
             if value.startswith('"') and value.endswith('"'):
                 value = value.strip('"')
