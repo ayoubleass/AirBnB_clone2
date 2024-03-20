@@ -35,7 +35,6 @@ class BaseModel:
                     setattr(self, key, datetime.fromisoformat(value))
                 else:
                     setattr(self, key , value)
-            self.__dict__.update(kwargs)
     
     def __str__(self):
         """Returns a string representation of the instance"""
