@@ -9,10 +9,10 @@ from  os import  getenv
 
 class State(BaseModel, Base):
     """ State class """
-    __tablename__ = 'states'
-    name = Column(String(128), nullable=False)
 
     if getenv("HBNB_TYPE_STORAGE") != "db":
+        name = ""
+        state_id = ""
         @property
         def cities(self):
             """ Getter attribute that connects relationship with City """
@@ -24,4 +24,6 @@ class State(BaseModel, Base):
                     city_list.append(city)
             return city_list
     else:
+        __tablename__ = 'states'
+        name = Column(String(128), nullable=False)
         cities = relationship("City", backref="state", cascade="delete")
