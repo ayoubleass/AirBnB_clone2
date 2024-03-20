@@ -15,21 +15,19 @@ class BaseModel:
 
     def __init__(self, *args, **kwargs):
         """Instatntiates a new model"""
-        from models import storage
-        if not kwargs:
+
+        if not kwargs or ("updated_at" not in kwargs and
+                          "created_at" not in kwargs):
+            from models import storage
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = datetime.now()
+            pass
         else:
-            if '__class__' in kwargs:
-                del kwargs['__class__']
-            if "created_at" not in kwargs:
-                setattr(self,'created_at',datetime.now())
-            if "updated_at" not in kwargs:
-                setattr(self,'updated_at',datetime.now())
-            if "id" not in kwargs:
-                setattr(self, 'id', str(uuid.uuid4()))
-
+            del kwargs['__class__']
+            setattr(self,'created_at',datetime.now())
+            setattr(self,'updated_at',datetime.now())
+            setattr(self, 'id', str(uuid.uuid4()))
             for key, value in kwargs.items():
                 if key == "created_at" or key == "updated_at":
                     setattr(self, key, datetime.fromisoformat(value))
