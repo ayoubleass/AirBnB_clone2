@@ -1,1 +1,1 @@
-{"State.4118953d-bfb0-44aa-956c-f22b5255397f": {"id": "4118953d-bfb0-44aa-956c-f22b5255397f", "created_at": "2024-03-20T06:26:26.682860", "updated_at": "2024-03-20T06:26:26.682860", "__class__": "State"}}
+{"User.2a5dec71-30fe-46f5-bc36-e6f26b0d151b": {"id": "2a5dec71-30fe-46f5-bc36-e6f26b0d151b", "created_at": "2024-03-20T07:09:18.044697", "updated_at": "2024-03-20T07:09:18.044697", "email": "gui@hbtn.io", "password": "guipwd", "first_name": "Guillaume", "last_name": "Snow", "__class__": "User"}}
