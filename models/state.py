@@ -24,4 +24,4 @@ class State(BaseModel, Base):
                     city_list.append(city)
             return city_list
     else:
-        cities = relationship("City", backref="state", cascade="all, delete")
+        cities = relationship("City", backref="State", cascade="all, delete")
