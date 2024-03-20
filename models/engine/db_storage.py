@@ -8,6 +8,12 @@ from os import getenv
 from models.base_model import Base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import scoped_session
+from models.state import State
+from models.city import City
+from models.user import User
+from models.place import Place
+from models.amenity import Amenity
+from models.review import Review
 
 class DBStorage:
 
@@ -31,14 +37,6 @@ class DBStorage:
         """
         Returns a dictionary of objects from the database.
         """
-        from models.base_model import Base
-        from sqlalchemy.orm import sessionmaker
-        from models.state import State
-        from models.city import City
-        from models.user import User
-        from models.place import Place
-        from models.amenity import Amenity
-        from models.review import Review
         models = [User, City, Place, Amenity, Review, State]
         result = {}
         if cls is None:
@@ -77,9 +75,10 @@ class DBStorage:
     
     def reload(self):
         """
-        Creates all tables and initializes a new session.
+        Creates all tables in the database.
         """
-        Base.metadata.create_all(bind=self.__engine)
-        session = sessionmaker(bind=self.__engine, expire_on_commit=False)
-        self.__session = scoped_session(session)()
+        Base.metadata.create_all(self.__engine)
+        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        Session = scoped_session(session_factory)
+        self.__session = Session()
 
