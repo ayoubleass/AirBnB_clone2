@@ -46,7 +46,7 @@ class Place(BaseModel, Base):
                     amenity_list.append(amenity)
             return amenity_list
         @amenities.setter
-        def amenities(self, obj):
+        def amenities(self, obj=None):
             """setter attribute for amenities"""
             from models.amenity import Amenity
             if isinstance(obj, Amenity):
