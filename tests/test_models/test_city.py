@@ -13,4 +13,3 @@ class TestCity(TestBasemodel):
         super().__init__(*args, **kwargs)
         self.name = "City"
         self.value = City
-

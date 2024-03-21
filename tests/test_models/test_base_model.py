@@ -75,8 +75,6 @@ class TestBasemodel(unittest.TestCase):
         self.assertEqual(str(i), '[{}] ({}) {}'.format(self.name, i.id,
                          i.__dict__))
 
-    
-
     def test_kwargs_none(self):
         """Tests kwargs that is empty."""
         n = {None: None}
