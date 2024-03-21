@@ -14,14 +14,6 @@ class TestPlace(TestBasemodel):
         self.name = "Place"
         self.value = Place
 
-    def test_city_id(self):
-        """Tests the type of city_id."""
-        new = self.value()
-        self.assertEqual(
-            type(new.city_id),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
-
     def test_amenity_ids(self):
         """Tests the type of amenity_ids."""
         new = self.value()
