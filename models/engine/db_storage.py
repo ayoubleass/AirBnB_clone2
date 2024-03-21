@@ -15,10 +15,11 @@ from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
 
+
 class DBStorage:
 
-    __engine=None
-    __session=None
+    __engine = None
+    __session = None
 
     def __init__(self):
         """Initializes the DBStorage class."""
@@ -27,8 +28,10 @@ class DBStorage:
         db_name = getenv("HBNB_MYSQL_DB")
         db_host = getenv("HBNB_MYSQL_HOST")
         url = f"mysql+mysqldb://{username}:{password}@{db_host}/{db_name}"
-        self.__engine = create_engine(f"mysql+mysqldb://{username}:{password}@{db_host}/{db_name}",
-                                     pool_pre_ping=True)
+        self.__engine = create_engine(f"mysql+mysqldb:/\
+                                      /{username}:{password}@\
+                                        {db_host}/{db_name}",
+                                      pool_pre_ping=True)
         if getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(bind=self.__engine)
 
@@ -43,14 +46,14 @@ class DBStorage:
                 query = self.__session.query(model)
                 for obj in query.all():
                     key = "{}.{}".format(obj.__class__.__name__, obj.id)
-                    result[key] = obj    
-        else: 
+                    result[key] = obj
+        else:
             query = self.__session.query(cls)
             for obj in query.all():
                 key = "{}.{}".format(obj.__class__.__name__, obj.id)
                 result[key] = obj
         return result
-        
+
     def save(self):
         """
         Commits changes to the database.
@@ -63,7 +66,7 @@ class DBStorage:
         """
         if obj is not None:
             self.__session.delete(obj)
-    
+
     def new(self, obj):
         """
         Adds a new object to the session.
@@ -71,13 +74,12 @@ class DBStorage:
         if obj is not None:
             self.__session.add(obj)
 
-    
     def reload(self):
         """
         Creates all tables in the database.
         """
         Base.metadata.create_all(self.__engine)
-        session_factory = sessionmaker(bind=self.__engine, expire_on_commit=False)
+        session_factory = sessionmaker(bind=self.__engine,
+                                       expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
-

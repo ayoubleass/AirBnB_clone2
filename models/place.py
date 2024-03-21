@@ -26,8 +26,8 @@ class Place(BaseModel, Base):
                                backref="place",
                                cascade="all, delete")
         amenities = relationship("Amenity",
-                                 secondary="place_amenity"
-                                 , viewonly=False,
+                                 secondary="place_amenity",
+                                 viewonly=False,
                                  back_populates='place_amenities',
                                  overlaps="amenities")
 
@@ -43,6 +43,7 @@ class Place(BaseModel, Base):
                 if review.place_id == self.id:
                     review_list.append(review)
             return review_list
+
         @property
         def amenities(self):
             """getter attribute for amenities"""
@@ -54,7 +55,6 @@ class Place(BaseModel, Base):
                 if amenity.id in self.amenity_ids:
                     amenity_list.append(amenity)
             return amenity_list
-        
 
         @amenities.setter
         def amenities(self, obj=None):
@@ -62,13 +62,16 @@ class Place(BaseModel, Base):
             from models.amenity import Amenity
             if isinstance(obj, Amenity):
                 self.amenity_ids.append(obj.id)
-place_amenity = Table('place_amenity', Base.metadata,
-                        Column('place_id',
-                               String(60),
-                               ForeignKey('places.id'),
-                               primary_key=True,
-                               nullable=False),
-                        Column('amenity_id',
-                               String(60),
-                               ForeignKey('amenities.id'),
-                               primary_key=True, nullable=False))
+
+
+place_amenity = Table('place_amenity',
+                      Base.metadata,
+                      Column('place_id',
+                             String(60),
+                             ForeignKey('places.id'),
+                             primary_key=True,
+                             nullable=False),
+                      Column('amenity_id',
+                             String(60),
+                             ForeignKey('amenities.id'),
+                             primary_key=True, nullable=False))
