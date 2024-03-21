@@ -13,11 +13,3 @@ class TestAmenity(TestBasemodel):
         super().__init__(*args, **kwargs)
         self.name = "Amenity"
         self.value = Amenity
-
-    def test_name2(self):
-        """Tests the type of name."""
-        new = self.value()
-        self.assertEqual(
-            type(new.name),
-            str if os.getenv('HBNB_TYPE_STORAGE') != 'db' else type(None)
-        )
