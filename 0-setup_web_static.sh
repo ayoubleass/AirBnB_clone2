@@ -2,7 +2,7 @@
 # This script sets up your web servers for the deployment of web_static.
 
 # Install Nginx if it not already installed
-if [ -z $(command -v nginx) ]
+if [ -z "$(command -v nginx)" ]
 then
 	apt-get update
 	apt-get -y install nginx
