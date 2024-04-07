@@ -19,22 +19,23 @@ def do_deploy(archive_path):
         return False
     # web_static_20170315003959.tgz
     filename = archive_path.split('/')[-1]
+    # Absolute path name
     filenamePathwithNoExtension = '/data/web_static/releases/{}'.format(
             filename.split(".")[0]
             )
     temp = "/tmp/{}".format(filename)
     try:
         put(archive_path, "/tmp")
-        run("sudo mkdir -p {}".format(filenamePathwithNoExtension))
-        run("sudo tar -xvzf {} -C {}/".format(
+        run("mkdir -p {}".format(filenamePathwithNoExtension))
+        run("tar -xvzf {} -C {}/".format(
             temp, filenamePathwithNoExtension
             ))
-        run("sudo mv {}/web_static/* {}".format(
+        run("mv {}/web_static/* {}".format(
             filenamePathwithNoExtension, filenamePathwithNoExtension)
             )
-        run("sudo rm {}".format(temp))
-        run("sudo rm -rf /data/web_static/current")
-        run("sudo ln -s {}/ /data/web_static/current".format(
+        run("rm {}".format(temp))
+        run("rm -rf /data/web_static/current")
+        run("ln -s {}/ /data/web_static/current".format(
             filenamePathwithNoExtension)
             )
         return True
