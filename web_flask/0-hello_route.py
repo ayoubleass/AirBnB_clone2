@@ -10,6 +10,9 @@ app = Flask(__name__)
 
 @app.route("/", strict_slashes=False)
 def default():
+    """
+    This functions displays the default content.
+    """
     return "Hello HBNB!"
 
 
