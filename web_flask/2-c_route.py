@@ -21,7 +21,7 @@ def hbnb():
 @app.route("/c/<text>")
 def cText(text):
     """ Dispalys <text>"""
-    content = text.replace('_', ' ')
+    content = "C " + text.replace('_', ' ')
     return content
 
 
