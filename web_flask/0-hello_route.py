@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """
 This script setup a Flask web application  on 0.0.0.0, port 5000
 """
@@ -16,5 +16,4 @@ def default():
     return "Hello HBNB!"
 
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+app.run(host='0.0.0.0', port=5000)
