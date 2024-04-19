@@ -25,6 +25,7 @@ def cText(text):
     return content
 
 
+@app.route('/python/')
 @app.route("/python/<text>", strict_slashes=False)
 def py_text(text='cool'):
     """Displays <text>"""
