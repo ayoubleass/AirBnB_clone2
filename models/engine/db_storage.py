@@ -27,11 +27,9 @@ class DBStorage:
         password = getenv("HBNB_MYSQL_PWD")
         db_name = getenv("HBNB_MYSQL_DB")
         db_host = getenv("HBNB_MYSQL_HOST")
-        url = f"mysql+mysqldb://{username}:{password}@{db_host}/{db_name}"
-        self.__engine = create_engine(f"mysql+mysqldb:/\
-                                      /{username}:{password}@\
-                                        {db_host}/{db_name}",
-                                      pool_pre_ping=True)
+        url = "mysql+mysqldb://{}:{}@{}/{}".format(
+         username, password, db_host, db_name)
+        self.__engine = create_engine("{}".format(url), pool_pre_ping=True)
         if getenv("HBNB_ENV") == "test":
             Base.metadata.drop_all(bind=self.__engine)
 
@@ -83,3 +81,7 @@ class DBStorage:
                                        expire_on_commit=False)
         Session = scoped_session(session_factory)
         self.__session = Session()
+
+    def close(self):
+        """ Close the session"""
+        self.__session.remove()
