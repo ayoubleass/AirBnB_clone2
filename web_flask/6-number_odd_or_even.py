@@ -1,4 +1,4 @@
-
+#!/usr/bin/python3
 """This script setup a Flask web application  on 0.0.0.0, port 5000"""
 
 from flask import Flask
