@@ -4,17 +4,15 @@
 
 from flask import Flask
 from flask import Flask, render_template
-#import sys
-#sys.path.append('/root/AirBnB_clone_v2/')
 from models import storage
-import models
 app = Flask(__name__)
 
 
 @app.route("/states_list", strict_slashes=False)
 def each_state_cities():
     """display the states and cities"""
-    states = sorted(storage.all("State"), key= lambda s: s.name)
+    from models import state
+    states = sorted(storage.all(state.State).values(), key=lambda s: s.name)
     return render_template('7-states_list.html', states=states)
 
 

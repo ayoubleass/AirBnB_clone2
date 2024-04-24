@@ -14,6 +14,7 @@ from models.user import User
 from models.place import Place
 from models.amenity import Amenity
 from models.review import Review
+import sys
 
 
 class DBStorage:
@@ -34,6 +35,7 @@ class DBStorage:
             Base.metadata.drop_all(bind=self.__engine)
 
     def all(self, cls=None):
+        print(cls)
         """
         Returns a dictionary of objects from the database.
         """
