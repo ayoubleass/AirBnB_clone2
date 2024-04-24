@@ -13,7 +13,7 @@ app = Flask(__name__)
 def each_state_cities():
     """display the states and cities"""
     from models import state
-    states = storage.all(state.State)
+    states = storage.all(state.State).values()
     return render_template('8-cities_by_states.html', states=states)
 
 
